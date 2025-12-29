@@ -33,36 +33,38 @@ const App: React.FC = () => {
 
   return (
     <Layout sidebar={<TutorChat />}>
-      {/* Tab Navigation */}
-      <div className="flex gap-2 p-1 bg-zinc-900 border border-zinc-800 rounded-xl inline-flex mb-8">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
-              activeTab === tab.id 
-                ? 'bg-zinc-100 text-zinc-950 shadow-lg' 
-                : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800'
-            }`}
-          >
-            <i className={`fas ${tab.icon}`}></i>
-            <span className="hidden md:inline">{tab.id}</span>
-          </button>
-        ))}
+      {/* Tab Navigation - Responsive horizontal scroll on mobile */}
+      <div className="flex w-full overflow-x-auto no-scrollbar pb-2 md:pb-0">
+        <div className="flex gap-2 p-1 bg-zinc-900 border border-zinc-800 rounded-xl whitespace-nowrap min-w-max">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-3 md:px-5 py-2.5 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2 ${
+                activeTab === tab.id 
+                  ? 'bg-zinc-100 text-zinc-950 shadow-xl scale-[1.02]' 
+                  : 'text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800'
+              }`}
+            >
+              <i className={`fas ${tab.icon} ${activeTab === tab.id ? 'text-blue-600' : ''}`}></i>
+              <span>{tab.id}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Module Content */}
-      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out py-4">
         {renderModule()}
       </div>
 
       {/* Footer Info */}
-      <footer className="mt-20 pt-10 border-t border-zinc-900 flex justify-between items-center text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
-        <div>Ecosistema IA 2025 v2.5.0</div>
-        <div className="flex gap-4">
-            <span className="hover:text-zinc-400 cursor-help">Docs</span>
-            <span className="hover:text-zinc-400 cursor-help">API Status</span>
-            <span className="hover:text-zinc-400 cursor-help">Terms</span>
+      <footer className="mt-20 py-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] md:text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
+        <div>Ecosistema IA 2025 • Arquitecto Senior Tutor</div>
+        <div className="flex gap-6">
+            <span className="hover:text-zinc-400 cursor-pointer transition-colors">Repositorio</span>
+            <span className="hover:text-zinc-400 cursor-pointer transition-colors">API Status</span>
+            <span className="hover:text-zinc-400 cursor-pointer transition-colors">Legal</span>
         </div>
       </footer>
     </Layout>
