@@ -1,0 +1,8 @@
+{
+  "name": "IA Architect Tutor 2025",
+  "description": "An interactive dashboard for learning the 2025 Generative AI ecosystem, featuring Socratic tutoring, model comparisons, and media generation capabilities.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
